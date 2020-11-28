@@ -27,7 +27,7 @@ In this work, we use Tensorflow implementation of ["Photo-realistic single image
 **PRelu(Parameterized Relu):** PRelu introduces learnable parameter that makes it possible to adaptively learn the negative part coefficient. We use Relu as activation function for simplicity. <br>
 
 ![Picture3](https://user-images.githubusercontent.com/65942005/100526325-975b9780-317c-11eb-8528-1785a6659b10.jpg)<br>
-[Ledig, Christian, et al. "Photo-realistic single image super-resolution using a generative adversarial network." Proceedings of the IEEE conference on computer vision and pattern recognition. 2017](https://arxiv.org/abs/1609.04802). <br>
+Ledig, Christian, et al. "Photo-realistic single image super-resolution using a generative adversarial network." Proceedings of the IEEE conference on computer vision and pattern recognition. 2017(https://arxiv.org/abs/1609.04802). <br>
 
 ## S-CIELAB representation
 We use as evaluation matrix of image quality. [S-CIELAB](http://scarlet.stanford.edu/~brian/scielab/introduction.html) is an extension of the CIE L*a*b* DeltaE color difference formula and provides human spatial sensitivity difference between a reference and a corresponding test image. The key components of calculating S-CIELAB representation include color transformation and the spatial filtering steps that simulates the human visual system before the standard CIELAB Delta E calculations.<br>
