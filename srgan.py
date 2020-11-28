@@ -17,7 +17,7 @@ from keras.optimizers import Adam
 import datetime
 import matplotlib.pyplot as plt
 import sys
-from data_loader2 import DataLoader
+from data_loader import DataLoader
 import numpy as np
 import os
 from keras.models import model_from_json
@@ -50,7 +50,7 @@ class SRGAN():
 
         # Configure data loader
         self.dataset_name = 'img_align_celeba'
-        self.data_loader2 = DataLoader(dataset_name=self.dataset_name,
+        self.data_loader = DataLoader(dataset_name=self.dataset_name,
                                       img_res=(self.hr_height, self.hr_width))
 
         # Calculate output shape of D (PatchGAN)
@@ -193,7 +193,7 @@ class SRGAN():
             # ----------------------
 
             # Sample images and their conditioning counterparts
-            imgs_hr, imgs_lr = self.data_loader2.load_data(batch_size)
+            imgs_hr, imgs_lr = self.data_loader.load_data(batch_size)
 
             # From low res. image generate high res. version
             fake_hr = self.generator.predict(imgs_lr)
@@ -211,7 +211,7 @@ class SRGAN():
             # ------------------
 
             # Sample images and their conditioning counterparts
-            imgs_hr, imgs_lr = self.data_loader2.load_data(batch_size)
+            imgs_hr, imgs_lr = self.data_loader.load_data(batch_size)
 
             # The generators want the discriminators to label the generated images as real
             valid = np.ones((batch_size,) + self.disc_patch)
@@ -236,7 +236,7 @@ class SRGAN():
         os.makedirs('images/%s' % self.dataset_name, exist_ok=True)
         r, c = 2, 2
 
-        imgs_hr, imgs_lr = self.data_loader2.load_data(batch_size=2, is_testing=True)
+        imgs_hr, imgs_lr = self.data_loader.load_data(batch_size=2, is_testing=True)
         fake_hr = self.generator.predict(imgs_lr)
 
         print(imgs_hr.shape)
@@ -282,6 +282,20 @@ class SRGAN():
 
         save(self.generator, "generator", epoch)
         save(self.discriminator, "discriminator",epoch)
+        
+    def feature(self,batch_size=1):
+        imgs_hr, imgs_lr = self.data_loader.load_data(batch_size)
+        image_features = self.vgg.predict(imgs_hr)
+        #plt.imshow(imgs_hr[0])
+        #plt.show()
+
+        print(image_features.shape)
+
+        dir = "C:/che/%s"
+        for i in range(256):
+            plt.imshow(image_features[0, :, :, i])
+            plt.savefig(dir % i)
+            #plt.show()
 
 
 
