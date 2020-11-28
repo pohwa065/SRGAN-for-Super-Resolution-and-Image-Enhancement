@@ -1,12 +1,6 @@
 """
 Super-resolution of CelebA using Generative Adversarial Networks.
 
-The dataset can be downloaded from: https://www.dropbox.com/sh/8oqt9vytwxb3s4r/AADIKlz8PR9zr6Y20qbkunrba/Img/img_align_celeba.zip?dl=0
-
-Instrustion on running the script:
-1. Download the dataset from the provided link
-2. Save the folder 'img_align_celeba' to 'datasets/'
-4. Run the sript using command 'python srgan.py'
 """
 
 from __future__ import print_function, division
@@ -80,24 +74,24 @@ class SRGAN():
 
         #load a generator
 
-        json_file = open('generator4000.json', 'r')
+        json_file = open('.json', 'r')
         loaded_model_json = json_file.read()
         json_file.close()
         self.generator = model_from_json(loaded_model_json)
         # load weights into new model
-        self.generator.load_weights("generator4000_weight.hdf5")
+        self.generator.load_weights(".hdf5")
         print("Loaded model from disk")
 
         self.generator.summary()
 
         #load a discriminator
 
-        json_file = open('discriminator950.json', 'r')
+        json_file = open('.json', 'r')
         loaded_model_json = json_file.read()
         json_file.close()
         self.discriminator = model_from_json(loaded_model_json)
         # load weights into new model
-        self.discriminator.load_weights("discriminator950_weight.hdf5")
+        self.discriminator.load_weights(".hdf5")
         print("Loaded model from disk")
 
         self.discriminator.compile(loss='mse',
