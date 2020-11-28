@@ -3,10 +3,10 @@ Super-Resolution Generative Adversarial Networks (SRGAN) is a deep learning appl
 
 ![Picture1](https://user-images.githubusercontent.com/65942005/100526323-93c81080-317c-11eb-991a-2299057ba5b0.png)
 Data processing and model training pipeline: Original image is processed with different camera parameters using ISET Camera Designer. These images are resized to 32x32x3 and served as the (LR) input to the generator. The target HR images are the original ones which are not processed. Total four models were trained:<br>
-1.  Model_SR: SRGAN model that does super resolution only <br>
-2.  Model_SR_Color: SRGAN model that does super resolution and color correction <br> 
-3.  Model_SR_Pixel: SRGAN model that does super resolution and restore spatial resolution due to reduction of system MTF <br> 
-4.  Model_SR_Deblur: SRGAN model that does super resolution and deblur<br> 
+**Model_SR:** SRGAN model that does super resolution only <br>
+**Model_SR_Color:** SRGAN model that does super resolution and color correction <br> 
+**Model_SR_Pixel:** SRGAN model that does super resolution and restore spatial resolution due to reduction of system MTF <br> 
+**Model_SR_Deblur:** SRGAN model that does super resolution and deblur<br> 
 
 ## DataSet
 ### Training ### 
@@ -20,3 +20,15 @@ Data processing and model training pipeline: Original image is processed with di
 
 ### Testing ### 
 About 100 images, not necessarily cats and dogs, are used for evaluation. As an input to four trained models (Model_SR, Model_SR_Color, Model_SR_Pixel, and Model_SR_Deblur), these images went through the same camera settings and resized to 32x32x3 similar to the training dataset.
+
+## SRGAN Model
+In this work, small modifications in are done as follows:
+**PixelShuffler x2:** This is for feature map upscaling. We use 2x ‘deconv2d’ Keras built-in function for implementation. <br>
+**PRelu(Parameterized Relu):** PRelu introduces learnable parameter that makes it possible to adaptively learn the negative part coefficient. We use Relu as activation function for simplicity. <br>
+
+![Picture3](https://user-images.githubusercontent.com/65942005/100526325-975b9780-317c-11eb-8528-1785a6659b10.jpg)
+Ledig, Christian, et al. "Photo-realistic single image super-resolution using a generative adversarial network." Proceedings of the IEEE conference on computer vision and pattern recognition. 2017.
+
+
+## S-CIELAB representation
+![Picture11](https://user-images.githubusercontent.com/65942005/100526525-7bf18c00-317e-11eb-9b3f-887526b5aa36.jpg)
