@@ -1,12 +1,5 @@
 """
 Super-resolution of CelebA using Generative Adversarial Networks.
-
-The dataset can be downloaded from: https://www.dropbox.com/sh/8oqt9vytwxb3s4r/AADIKlz8PR9zr6Y20qbkunrba/Img/img_align_celeba.zip?dl=0
-
-Instrustion on running the script:
-1. Download the dataset from the provided link
-2. Save the folder 'img_align_celeba' to 'datasets/'
-4. Run the sript using command 'python srgan.py'
 """
 
 from __future__ import print_function, division
@@ -76,35 +69,6 @@ class SRGAN():
 
         # Build the generator
         self.generator = self.build_generator()
-
-
-        #load a generator
-
-        json_file = open('generator4200.json', 'r')
-        loaded_model_json = json_file.read()
-        json_file.close()
-        self.generator = model_from_json(loaded_model_json)
-        # load weights into new model
-        self.generator.load_weights("generator4200_weight.hdf5")
-        print("Loaded model from disk")
-
-        self.generator.summary()
-
-        #load a discriminator
-
-        json_file = open('discriminator4200.json', 'r')
-        loaded_model_json = json_file.read()
-        json_file.close()
-        self.discriminator = model_from_json(loaded_model_json)
-        # load weights into new model
-        self.discriminator.load_weights("discriminator4200_weight.hdf5")
-        print("Loaded model from disk")
-
-        self.discriminator.compile(loss='mse',
-                                   optimizer=optimizer,
-                                   metrics=['accuracy'])
-
-        #self.discriminator.summary()
 
         # High res. and low res. images
         img_hr = Input(shape=self.hr_shape)
@@ -218,7 +182,7 @@ class SRGAN():
 
         return Model(d0, validity)
 
-    def train(self, epochs, batch_size=10, sample_interval=50):
+    def train(self, epochs, batch_size=50, sample_interval=50):
 
         start_time = datetime.datetime.now()
 
@@ -323,5 +287,4 @@ class SRGAN():
 
 if __name__ == '__main__':
     gan = SRGAN()
-    #gan.sample_images(1)
-    gan.train(epochs=10000, batch_size=10, sample_interval=50)
+    gan.train(epochs=1000, batch_size=50, sample_interval=50)
