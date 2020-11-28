@@ -30,4 +30,16 @@ In this work, small modifications in are done as follows:<br>
 Ledig, Christian, et al. "Photo-realistic single image super-resolution using a generative adversarial network." Proceedings of the IEEE conference on computer vision and pattern recognition. 2017. <br>
 
 ## S-CIELAB representation
-![Picture11](https://user-images.githubusercontent.com/65942005/100526525-7bf18c00-317e-11eb-9b3f-887526b5aa36.jpg)
+We use as evaluation matrix of image quality. S-CIELAB is an extension of the CIE L*a*b* DeltaE color difference formula and provides human spatial sensitivity difference between a reference and a corresponding test image. The key components of calculating S-CIELAB representation include color transformation and the spatial filtering steps that simulates the human visual system before the standard CIELAB Delta E calculations.<br>
+![Picture11](https://user-images.githubusercontent.com/65942005/100526525-7bf18c00-317e-11eb-9b3f-887526b5aa36.jpg) <br>
+
+## Result
+### Effect of missing pixels
+SRGAN model is able to deal with missing/noise pixels (about 10% in our experiment) and generate HR images not only have smooth edges but also restore the details. <br>
+
+### HR images from trained SRGAN models
+SRGAN model can be trained to perform super-resolution and image enhancement (including color correction and de-blurring) simultaneously <br>
+
+### S-CIELAB delta E maps
+The S-CIELAB delta E maps show the difference between target images and the model generated images. Consider these difference as 'residue' (mainly at the edges) that the model can improve, it might be interesting in future work to replace/add S-CIELAB representation to the generator's loss function. The reason being, one of the major changes that a more advanced version of SRGAN model (called Enhanced SRGAN, ESRGAN) have done is to use feature maps before activation for calculating content loss. As we extract feature maps from relatively deep layer in VGG19 layer, some of the features after activation becomes inactive and contains fewer information. It is possible that S-CIELAB can provide additional information, especially from human spatial sensitivity point of view, to the generator during training and create a new class of super resolution images that focus more on how accurate the reproduction of a color is to the original when viewed by a human observer.
+
