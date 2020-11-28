@@ -22,13 +22,12 @@ Data processing and model training pipeline: Original image is processed with di
 About 100 images, not necessarily cats and dogs, are used for evaluation. As an input to four trained models (Model_SR, Model_SR_Color, Model_SR_Pixel, and Model_SR_Deblur), these images went through the same camera settings and resized to 32x32x3 similar to the training dataset.
 
 ## SRGAN Model
-In this work, small modifications in are done as follows:
+In this work, small modifications in are done as follows:<br>
 **PixelShuffler x2:** This is for feature map upscaling. We use 2x ‘deconv2d’ Keras built-in function for implementation. <br>
 **PRelu(Parameterized Relu):** PRelu introduces learnable parameter that makes it possible to adaptively learn the negative part coefficient. We use Relu as activation function for simplicity. <br>
 
-![Picture3](https://user-images.githubusercontent.com/65942005/100526325-975b9780-317c-11eb-8528-1785a6659b10.jpg)
-Ledig, Christian, et al. "Photo-realistic single image super-resolution using a generative adversarial network." Proceedings of the IEEE conference on computer vision and pattern recognition. 2017.
-
+![Picture3](https://user-images.githubusercontent.com/65942005/100526325-975b9780-317c-11eb-8528-1785a6659b10.jpg)<br>
+Ledig, Christian, et al. "Photo-realistic single image super-resolution using a generative adversarial network." Proceedings of the IEEE conference on computer vision and pattern recognition. 2017. <br>
 
 ## S-CIELAB representation
 ![Picture11](https://user-images.githubusercontent.com/65942005/100526525-7bf18c00-317e-11eb-9b3f-887526b5aa36.jpg)
