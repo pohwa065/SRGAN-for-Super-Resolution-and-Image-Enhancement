@@ -1,4 +1,4 @@
-# Deep-Learning-for-Super-Resolution-and-Image-Enhancement
+# SRGAN-for-Super-Resolution-and-Image-Enhancement
 A Tensorflow implementation of SRGAN based on CVPR 2017 paper [Photo-realistic single image super-resolution using a generative adversarial network](https://arxiv.org/abs/1609.04802) to generate high resolution (HR) images from low resolution (LR) image. In this work, we use SRGAN to up-scale 32x32 images to 128x128 pixels. Meanwhile, we evaluate the impact of different camera parameters on the quality of final up-scaled (high resolution) images and infer from these stimuli to understand what the network is able to learn.
 
 ![Picture1](https://user-images.githubusercontent.com/65942005/100526323-93c81080-317c-11eb-991a-2299057ba5b0.png)
