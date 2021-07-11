@@ -220,8 +220,7 @@ class SRGAN():
             image_features = self.vgg.predict(imgs_hr)
 
             # Train the geneijgty]rators
-            g_loss = self.combined.train_on_batch([imgs_lr, imgs_hr], [valid, image_features])
-
+            g_loss = self.combined.train_on_batch([imgs_lr, imgs_hr], [valid, image_features])               # [Y1,Y2] = [groundtruth1,groundtruth2] = [valid, image_features]
             elapsed_time = datetime.datetime.now() - start_time
             # Plot the progress
             print ("%d time: %s" % (epoch, elapsed_time))
