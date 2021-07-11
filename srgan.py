@@ -70,25 +70,25 @@ class SRGAN():
         # Build the generator
         self.generator = self.build_generator()
 
-        # High res. and low res. images
-        img_hr = Input(shape=self.hr_shape)
+        # High res. and low res. images                                          #combined model input
+        img_hr = Input(shape=self.hr_shape) 
         img_lr = Input(shape=self.lr_shape)
 
-        # Generate high res. version from low res.
-        fake_hr = self.generator(img_lr)
+        # Generate high res. version from low res.                               #path to output
+        fake_hr = self.generator(img_lr) 
 
-        # Extract image features of the generated img
+        # Extract image features of the generated img                            #path to output
         fake_features = self.vgg(fake_hr)
-
-        # For the combined model we will only train the generator
+ 
+        # For the combined model we will only train the generator            
         self.discriminator.trainable = False
 
-        # Discriminator determines validity of generated high res. images
+        # Discriminator determines validity of generated high res. images       #path to output
         validity = self.discriminator(fake_hr)
 
-        self.combined = Model([img_lr, img_hr], [validity, fake_features])
-        self.combined.compile(loss=['binary_crossentropy', 'mse'],
-                              loss_weights=[1e-3, 1],
+        self.combined = Model([img_lr, img_hr], [validity, fake_features])        # Model([input1,input2],[output1,output2])        
+        self.combined.compile(loss=['binary_crossentropy', 'mse'],                # output1 vs groundtruth1  (label) : binaray_crossentropy loss
+                              loss_weights=[1e-3, 1],                             # output2 vs groundtruth2  (feature) : mse loss
                               optimizer=optimizer)
 
 
